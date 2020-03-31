@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".person.activity.MyInfoActivity">
+    <!-- 顶部展示  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="22dp"
+        android:layout_height="40dp">
+        <ImageView
+            android:id="@+id/back_pre"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/left_jt"
+            >
+        </ImageView>
+        <TextView
+            android:id="@+id/publish"
+            android:text="个人信息"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
+
+    <!--  信息布局  -->
+    <LinearLayout
+        android:background="@color/white1"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="320dp">
+
+        <!--   头像 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/pick_head"
+            android:layout_height="70dp">
+            <TextView
+                android:text="头像"
+                android:textSize="16dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/option_gray"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+            <ImageView
+                android:id="@+id/head"
+                android:layout_marginLeft="250dp"
+                android:layout_width="54dp"
+                android:src="@mipmap/tupian"
+                android:layout_gravity="center"
+                android:layout_height="54dp">
+            </ImageView>
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:src="@drawable/jiantou">
+            </ImageView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/gray">
+        </View>
+
+        <!--   昵称 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/line_nick"
+            android:layout_height="60dp">
+            <TextView
+                android:text="昵称"
+                android:textSize="16dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/option_gray"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <TextView
+                android:id="@+id/nickName"
+                android:layout_width="115dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="190dp"
+                android:gravity="right"
+                android:layout_marginTop="10dp"
+                android:text="蔡徐坤及你太美">
+            </TextView>
+            <ImageView
+                style="@style/jiantou_design">
+            </ImageView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/gray">
+        </View>
+
+        <!--   手机号码 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="60dp">
+            <TextView
+                android:text="手机号码"
+                android:textSize="16dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/option_gray"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="115dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="158dp"
+                android:gravity="right"
+                android:layout_marginTop="10dp"
+                android:text="18377858933">
+            </TextView>
+            <ImageView
+                style="@style/jiantou_design">
+            </ImageView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/gray">
+        </View>
+
+        <!--   性别 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="60dp">
+            <TextView
+                android:text="性别"
+                android:textSize="16dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/option_gray"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/gray">
+        </View>
+
+        <!--   个性签名 -->
+        <LinearLayout
+            android:id="@+id/line_signature"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="60dp">
+            <TextView
+                android:text="个性签名"
+                android:textSize="16dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/option_gray"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+                android:id="@+id/signature"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="141dp"
+                android:gravity="right"
+                android:layout_marginTop="10dp"
+                android:text="风筝有风 海豚有海 而你有我">
+            </TextView>
+            <ImageView
+                style="@style/jiantou_design">
+            </ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tour图文欣赏</string>
+    <string name="nickName">请输入昵称</string>
+    <string name="regist_name">请输入手机号码</string>
+    <string name="regist_psw">请输入密码</string>
+    <string name="code">请输入验证码</string>
+    <string name="enroll">注      册</string>
+
+</resources>

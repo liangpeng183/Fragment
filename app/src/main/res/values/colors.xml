@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="black">#312C2C</color>
+
+    <color name="bottom_select">#ADECFB</color>
+    <color name="bottom_select1">#e6194c</color>
+    <color name="option_gray">#46464d</color>
+
+
+    <color name="bg_color">#8181D6</color>
+    <color name="gray">#F1F1F5</color>
+    <color name="white1">#FFFFFF</color>
+    <color name="bg">#D7D7DD</color>
+    <color name="red">#D5829D</color>
+
+</resources>

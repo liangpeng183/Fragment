@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".person.activity.UpdateNickName">
+
+    <!-- 顶部展示  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="22dp"
+        android:layout_height="40dp">
+        <ImageView
+            android:id="@+id/back_pre"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/left_jt"
+            >
+        </ImageView>
+        <TextView
+            android:text="更改昵称"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:id="@+id/save_nickUpdate"
+            android:layout_gravity="center"
+            android:background="@color/gray"
+            android:textColor="@color/bg_color"
+            android:layout_marginLeft="212dp"
+            android:text="保存">
+        </Button>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white1">
+
+    </View>
+
+    <EditText
+        android:layout_width="370dp"
+        android:layout_height="60dp"
+        android:id="@+id/nickName_update"
+        android:textColor="@color/black"
+        android:layout_marginLeft="12dp"
+        android:paddingBottom="4dp"
+        android:textSize="14dp"
+        android:layout_marginTop="10dp">
+    </EditText>
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="12dp"
+        android:text="突出个性的好昵称"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="18dp"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+</LinearLayout>
