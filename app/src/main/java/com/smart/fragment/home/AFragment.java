@@ -179,7 +179,7 @@ public class AFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initJd() {
-
+        jdList.clear();
         for (int i = 0; i < 15; i++) {
             JD jd = new JD();
             int n = i + 1;
