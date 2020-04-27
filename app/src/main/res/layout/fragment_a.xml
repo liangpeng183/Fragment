@@ -45,11 +45,13 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-
+<!--  图片轮播-->
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
+
+
     <!--  显示类别  -->
     <LinearLayout
         android:layout_width="match_parent"

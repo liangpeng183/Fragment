@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".person.activity.MyInfoActivity">
+
+    <ImageView
+        android:id="@+id/jdPic_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/jdDesc_tv"
+        android:layout_marginLeft="12dp"
+        android:padding="8dp"
+        android:layout_toRightOf="@+id/jdPic_image"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/jdName_tv"
+        android:layout_toRightOf="@+id/jdPic_image"
+        android:layout_below="@+id/jdDesc_tv"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_width="100dp"
+        android:layout_height="30dp">
+
+    </TextView>
+
+</RelativeLayout>

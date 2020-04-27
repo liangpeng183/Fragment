@@ -1,15 +1,23 @@
 package com.smart.fragment.bean;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 public class Info implements Serializable {
 
     private String id;
     private String content;
     private String author;
-    private Timestamp time;
+    private String headImg;
+    private String time;
     private String pic;
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
+    }
 
     public String getId() {
         return id;
@@ -35,11 +43,11 @@ public class Info implements Serializable {
         this.author = author;
     }
 
-    public Timestamp getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

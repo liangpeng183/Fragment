@@ -7,12 +7,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="@color/bottom_select"
+    android:background="@color/gray"
     tools:context=".community.activity.PublishActicity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
+        android:background="@color/gray"
         android:layout_height="40dp">
         <ImageView
             android:id="@+id/back_pre"
@@ -27,7 +28,8 @@
         <Button
             android:id="@+id/publish"
             android:text="发表"
-            android:background="@color/bottom_select"
+            android:textColor="@color/bg_color"
+            android:background="@color/gray"
             android:textSize="18dp"
             android:layout_gravity="center"
             android:layout_marginLeft="280dp"
@@ -37,16 +39,45 @@
         </Button>
     </LinearLayout>
 
-    <EditText
-        android:gravity="top|left"
-        android:hint="发表自己的想法"
-        android:background="@color/gray"
-        android:textSize="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_width="match_parent"
-        android:layout_height="218dp">
 
-    </EditText>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/white1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/publish_content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/white1"
+            android:gravity="top|left"
+            android:hint="发表自己的想法"
+            android:textSize="16dp"></EditText>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/gray"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:overScrollMode="never"/>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -10,6 +10,7 @@ public class Users implements Serializable {
     private String phone;
     private String headPic;    // 头像
     private String signature;  // 个性签名
+    private String sex;   // 性别
 
     public String getuId() {
         return uId;
@@ -57,5 +58,13 @@ public class Users implements Serializable {
 
     public void setSignature(String signature) {
         this.signature = signature;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

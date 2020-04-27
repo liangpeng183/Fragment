@@ -57,11 +57,11 @@
             </TextView>
             <ImageView
                 android:id="@+id/head"
-                android:layout_marginLeft="250dp"
-                android:layout_width="54dp"
+                android:layout_marginLeft="246dp"
+                android:layout_width="60dp"
                 android:src="@mipmap/tupian"
                 android:layout_gravity="center"
-                android:layout_height="54dp">
+                android:layout_height="70dp">
             </ImageView>
             <ImageView
                 android:layout_width="22dp"
@@ -155,6 +155,7 @@
 
         <!--   性别 -->
         <LinearLayout
+            android:id="@+id/switch_sex"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="60dp">
@@ -168,6 +169,19 @@
                 android:layout_height="wrap_content">
 
             </TextView>
+            <TextView
+                android:id="@+id/sex"
+                android:layout_width="115dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="188dp"
+                android:gravity="right"
+                android:layout_marginTop="10dp"
+                android:text="">
+            </TextView>
+            <ImageView
+                style="@style/jiantou_design">
+            </ImageView>
 
         </LinearLayout>
         <View
@@ -200,7 +214,7 @@
                 android:layout_marginLeft="141dp"
                 android:gravity="right"
                 android:layout_marginTop="10dp"
-                android:text="风筝有风 海豚有海 而你有我">
+                android:text="风筝有风 海豚有海">
             </TextView>
             <ImageView
                 style="@style/jiantou_design">

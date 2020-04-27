@@ -12,10 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.smart.fragment.R;
 import com.smart.fragment.base.BaseActivity;
-import com.smart.fragment.bean.Users;
+import com.smart.fragment.utils.Const;
 import com.smart.fragment.utils.MobileFormatCheck;
 import com.smart.fragment.utils.OkHttpUtil;
 import com.smart.fragment.utils.SendSmsTimerUtils;
@@ -145,13 +144,13 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
      * 保存注册用户
      * */
     private void saveRegist(String myPhone, String name, String psw) {
-        final String url = "http://192.168.1.103:8001/user/regist";
-        Users users = new Users();
+        final String url = Const.URL.URL_SUFFIX + "user/regist";
+        /*Users users = new Users();
         users.setNickName(name);
         users.setPhone(myPhone);
         users.setPassword(psw);
         Gson gson = new Gson();
-        String userJon = gson.toJson(users);
+        String userJon = gson.toJson(users);*/
         //Log.i("","json格式：----》"+userJon);
         //MediaType  设置Content-Type 标头中包含的媒体类型值
         //final RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8"), userJon);
@@ -197,9 +196,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 Log.i("handler3----->", String.valueOf(msg.arg2));//result
                 if (msg.arg2 == 0) {
                     Toast.makeText(context, "验证码错误", Toast.LENGTH_SHORT).show();
-                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    //intent.putExtra("name",name);
-                    //startActivity(intent);
+
                 } else if (msg.arg2 == -1) {
                     if (msg.arg1 == 3) {
                     }
@@ -253,7 +250,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String checkPhoneIsRegist_url = "http://192.168.1.103:8001/user/checkPhoneIsRegisted/" + phone_num;
+                String checkPhoneIsRegist_url = Const.URL.URL_SUFFIX + "user/checkPhoneIsRegisted/" + phone_num;
                 OkHttpUtil.sendOkHttpRequest(checkPhoneIsRegist_url, new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {

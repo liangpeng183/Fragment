@@ -2,6 +2,8 @@ package com.smart.fragment.person.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,9 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smart.fragment.R;
 import com.smart.fragment.base.BaseActivity;
+import com.smart.fragment.utils.Const;
 import com.smart.fragment.utils.OkHttpUtil;
 
 import java.io.IOException;
@@ -97,7 +101,7 @@ public class UpdateSignature extends BaseActivity implements View.OnClickListene
         pre_back.setOnClickListener(this);
 
         text_num = findViewById(R.id.text_num);
-        text_num.setText(""+num);
+        text_num.setText("" + num);
 
     }
 
@@ -124,7 +128,7 @@ public class UpdateSignature extends BaseActivity implements View.OnClickListene
             @Override
             public void run() {
                 String mySignature = my_Signature.getText().toString().trim();
-                String url = "http://192.168.1.103:8001/user/updateOrSaveSign/" + mySignature;
+                String url =  Const.URL.URL_SUFFIX + "user/updateOrSaveSign/" + mySignature;
                 OkHttpUtil.sendOkHttpRequest(url, new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -134,11 +138,36 @@ public class UpdateSignature extends BaseActivity implements View.OnClickListene
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         String data = response.body().string();
+                        Message msg = Message.obtain();
+                        msg.what = 1;
+                        msg.obj = data;
+                        handler.sendMessage(msg);
                     }
                 });
             }
         }).start();
     }
+
+    // handler 处理
+    public Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    if(msg.obj.equals("ok")){
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(context,"更新失败",Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
 
 }

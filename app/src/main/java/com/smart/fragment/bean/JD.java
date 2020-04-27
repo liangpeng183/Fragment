@@ -2,33 +2,51 @@ package com.smart.fragment.bean;
 
 import java.io.Serializable;
 
-public class JD implements Serializable {
+public class JD implements Serializable {   //实现序列化
 
-    private String id;
-    private String name;
-    private String desc;
+    private String jdId;  // id
+    private String jdName;  // 名称
+    private String jdDesc;  // 描述
+    private String position;  // 位置
+    private String image;   // 图片
 
-    public String getId() {
-        return id;
+    public String getJdId() {
+        return jdId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setJdId(String jdId) {
+        this.jdId = jdId;
     }
 
-    public String getName() {
-        return name;
+    public String getJdName() {
+        return jdName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setJdName(String jdName) {
+        this.jdName = jdName;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getJdDesc() {
+        return jdDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setJdDesc(String jdDesc) {
+        this.jdDesc = jdDesc;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

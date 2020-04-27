@@ -59,6 +59,7 @@
         android:layout_marginLeft="12dp"
         android:paddingBottom="4dp"
         android:textSize="14dp"
+        android:maxLength="8"
         android:layout_marginTop="10dp">
     </EditText>
     <TextView

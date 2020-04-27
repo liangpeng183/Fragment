@@ -2,6 +2,8 @@ package com.smart.fragment.person.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -10,9 +12,18 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.smart.fragment.R;
 import com.smart.fragment.base.BaseActivity;
+import com.smart.fragment.utils.Const;
+import com.smart.fragment.utils.OkHttpUtil;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class UpdateNickName extends BaseActivity implements View.OnClickListener {
 
@@ -35,12 +46,12 @@ public class UpdateNickName extends BaseActivity implements View.OnClickListener
          *  初始化控件
          * */
         initUi();
-        Log.i("CharSequence------>","333333333");
+        Log.i("CharSequence------>", "333333333");
 
-        Intent intent =getIntent();
+        Intent intent = getIntent();
         String name = getIntent().getStringExtra("name");
         nickName_update.setText(name);  // 这里开始变化   调用 变化监听事件
-        Log.i("CharSequence------>","444444");
+        Log.i("CharSequence------>", "444444");
 
 
     }
@@ -58,12 +69,12 @@ public class UpdateNickName extends BaseActivity implements View.OnClickListener
     }
 
     /*
-    *  edittext 变化监听事件
-    * */
+     *  edittext 变化监听事件
+     * */
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            Log.i("CharSequence------>","11111111111");
+            Log.i("CharSequence------>", "11111111111");
             save_update.setEnabled(false);
         }
 
@@ -75,7 +86,7 @@ public class UpdateNickName extends BaseActivity implements View.OnClickListener
 
         @Override
         public void afterTextChanged(Editable editable) {
-            Log.i("CharSequence------>","222222222");
+            Log.i("CharSequence------>", "222222222");
             save_update.setEnabled(true);
         }
     };
@@ -87,10 +98,56 @@ public class UpdateNickName extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.save_nickUpdate:
-
+                updateNickName();
                 break;
             default:
                 break;
         }
     }
+
+    /*
+     *   修改昵称   接口
+     * */
+    private void updateNickName() {
+
+        String nick = nickName_update.getText().toString().trim();
+        String url = Const.URL.URL_SUFFIX +  "user/updateNickName/" + nick;
+        OkHttpUtil.sendOkHttpRequest(url, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String data = response.body().string();
+                Message msg = Message.obtain();
+                msg.what = 1;
+                msg.obj = data;
+                handler.sendMessage(msg);
+            }
+        });
+
+    }
+
+
+    // handler 处理
+    public Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    if (msg.obj.equals("ok")) {
+                        finish();
+                    } else {
+                        Toast.makeText(context, "更新失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+
 }

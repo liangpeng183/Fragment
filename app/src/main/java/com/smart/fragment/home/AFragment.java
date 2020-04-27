@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -30,6 +31,7 @@ import com.smart.fragment.home.activity.Gl_Activity;
 import com.smart.fragment.home.activity.Jd_Activity;
 import com.smart.fragment.home.activity.Ms_Activity;
 import com.smart.fragment.home.activity.One_Info;
+import com.smart.fragment.home.activity.SearchByKeyName;
 import com.smart.fragment.home.activity.Zs_Activity;
 import com.smart.fragment.utils.ImageLoader;
 
@@ -42,6 +44,7 @@ public class AFragment extends BaseFragment implements View.OnClickListener {
     private SliderLayout sliderShow;
 
     private TextView tv;
+    private EditText search_edittext;
 
     private LinearLayout gl, jd, ms, zs;
 
@@ -180,9 +183,9 @@ public class AFragment extends BaseFragment implements View.OnClickListener {
         for (int i = 0; i < 15; i++) {
             JD jd = new JD();
             int n = i + 1;
-            jd.setId(String.valueOf(n));
-            jd.setName("桂林" + n);
-            jd.setDesc("山水甲天下" + n);
+            jd.setJdId(String.valueOf(n));
+            jd.setJdName("桂林" + n);
+            jd.setJdDesc("山水甲天下" + n);
             jdList.add(jd);
         }
 
@@ -224,6 +227,10 @@ public class AFragment extends BaseFragment implements View.OnClickListener {
         gl.setOnClickListener(this);
         ms.setOnClickListener(this);
         zs.setOnClickListener(this);
+
+        search_edittext = view.findViewById(R.id.search_edittext);
+        search_edittext.setFocusable(false);
+        search_edittext.setOnClickListener(this);
     }
 
     // 下拉刷新控件
@@ -284,8 +291,14 @@ public class AFragment extends BaseFragment implements View.OnClickListener {
                 intent = new Intent(context, Zs_Activity.class);
                 startActivity(intent);
                 break;
+            // 搜索
+            case R.id.search_edittext:
+                startActivity(new Intent(context, SearchByKeyName.class));
+                break;
             default:
                 break;
         }
     }
+
+
 }

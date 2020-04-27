@@ -39,9 +39,9 @@ public class MyAdapter extends ArrayAdapter {
         jd_name = view.findViewById(R.id.jd_name);
         jd_id = view.findViewById(R.id.jd_id);
         jd_desc = view.findViewById(R.id.jd_desc);
-        jd_name.setText(jd.getName());
-        jd_id.setText(jd.getId());
-        jd_desc.setText(jd.getDesc());
+        jd_name.setText(jd.getJdName());
+        jd_id.setText(jd.getJdId());
+        jd_desc.setText(jd.getJdDesc());
         return view;
     }
 

@@ -12,6 +12,6 @@ public class Ms_Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ms);
 
-        
+
     }
 }

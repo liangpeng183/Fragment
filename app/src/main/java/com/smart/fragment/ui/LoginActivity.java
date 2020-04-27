@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.smart.fragment.R;
 import com.smart.fragment.base.BaseActivity;
+import com.smart.fragment.utils.Const;
 import com.smart.fragment.utils.ExitApplication;
 import com.smart.fragment.utils.MobileFormatCheck;
 import com.smart.fragment.utils.OkHttpUtil;
@@ -40,6 +41,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     public String myPhone, myPhone1;
     private LinearLayout rl_lv_item_bg;
+
+    private String URL = Const.URL.URL_SUFFIX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +112,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         myPhone = phone.getText().toString().trim();
         String myPassword = password.getText().toString().trim();
 
-        String url = "http://192.168.1.103:8001/user/login/" + myPhone + "/" + myPassword;
+        String url =  URL +"user/login/" + myPhone + "/" + myPassword;
 
         if (myPhone.isEmpty() || myPhone.equals("")) {
             Toast.makeText(context, "请输入手机号", Toast.LENGTH_SHORT).show();
@@ -180,7 +183,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String checkPhoneIsRegist_url = "http://192.168.1.103:8001/user/checkPhoneIsRegisted/" + phone_num;
+                String checkPhoneIsRegist_url = URL + "user/checkPhoneIsRegisted/" + phone_num;
                 OkHttpUtil.sendOkHttpRequest(checkPhoneIsRegist_url, new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {

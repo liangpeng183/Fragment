@@ -8,17 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-*   退出系统  两次返回
-* */
+ *   退出系统  两次返回
+ * */
 public class ExitApplication extends Application {
 
     private List<Activity> list = new ArrayList<Activity>();
 
     private static ExitApplication ea;
 
-    private ExitApplication() {
+    public ExitApplication() {
 
     }
+
 
     public static ExitApplication getInstance() {
         if (null == ea) {

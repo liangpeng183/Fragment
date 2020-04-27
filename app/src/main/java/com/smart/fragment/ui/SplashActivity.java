@@ -16,6 +16,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+//         MultiDex.install(this);
         ExitApplication.getInstance().addActivity(this);
 
         /*
@@ -24,9 +25,11 @@ public class SplashActivity extends BaseActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
+//        CalTimeFarNow.calTime(); // 测试 时间转换
+
         /*
-        *  启动页设置
-        * */
+         *  启动页设置
+         * */
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

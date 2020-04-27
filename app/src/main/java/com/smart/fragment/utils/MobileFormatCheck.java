@@ -5,8 +5,6 @@ import android.util.Log;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
-
 public class MobileFormatCheck {
 
     /*
@@ -18,13 +16,13 @@ public class MobileFormatCheck {
 
         String regex="^1[34578]\\d{9}$";
         if (phone.length()!=11){
-            Log.i(TAG, "isPhone: 手机位数不对");
+            Log.i("", "isPhone: 手机位数不对");
             return false;
         }else {
             Pattern p=Pattern.compile(regex);
             Matcher m=p.matcher(phone);
             boolean isMatch=m.matches();
-            Log.i(TAG, "isPhone: 是否正则匹配"+isMatch);
+            Log.i("", "isPhone: 是否正则匹配"+isMatch);
             return isMatch;
         }
 

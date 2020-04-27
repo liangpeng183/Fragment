@@ -143,7 +143,7 @@ public abstract class BaseActivity extends Activity{
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {//使用自构对话框询问 此时的对话框是有"不再提醒"的
-                                  //  ActivityCompat.requestPermissions(((Activity) context), permissions, permissionRequestCode);
+                                    //  ActivityCompat.requestPermissions(((Activity) context), permissions, permissionRequestCode);
                                 }
                             }).show();//在按键响应事件中显示此对话框
                     ActivityCompat.requestPermissions(((Activity) context), permissions, permissionRequestCode);

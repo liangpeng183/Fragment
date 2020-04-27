@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".person.activity.MyInfoActivity">
+
+    <ImageView
+        android:id="@+id/user_headImg"
+        android:layout_width="60dp"
+        android:layout_height="60dp">
+
+    </ImageView>
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/user_headImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="6dp"
+            android:text="蔡徐坤"
+            android:textColor="@color/bg_color"
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/info_content"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <GridView
+            android:id="@+id/gridView_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="#00000000"
+            android:columnWidth="65dp"
+            android:fadingEdge="none"
+            android:horizontalSpacing="2dp"
+            android:listSelector="#00000000"
+            android:numColumns="3"
+            android:paddingLeft="12dp"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:transcriptMode="alwaysScroll">
+
+        </GridView>
+
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_marginTop="8dp"
+            android:layout_width="80dp"
+            android:layout_marginBottom="8dp"
+            android:layout_height="18dp">
+
+        </TextView>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
