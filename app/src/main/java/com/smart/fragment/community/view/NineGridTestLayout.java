@@ -3,13 +3,17 @@ package com.smart.fragment.community.view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.luck.picture.lib.entity.LocalMedia;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.smart.fragment.community.BFragment;
 import com.smart.fragment.community.util.ImageLoaderUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +24,8 @@ import java.util.List;
 public class NineGridTestLayout extends NineGridLayout {
 
     protected static final int MAX_W_H_RATIO = 3;
+
+    private List<LocalMedia> selectList = new ArrayList<>();  //集合  存放多张图片
 
     public NineGridTestLayout(Context context) {
         super(context);
@@ -79,5 +85,19 @@ public class NineGridTestLayout extends NineGridLayout {
     @Override
     protected void onClickImage(int i, String url, List<String> urlList) {
         Toast.makeText(mContext, "点击了图片" + url, Toast.LENGTH_SHORT).show();
+        /*for (int j = 0; j < urlList.size(); j++) {
+            LocalMedia media = new LocalMedia();
+
+            String picUrl = urlList.get(j);
+            media.setPath(url);
+            //selectList.add(url);
+            Log.i("","url："+picUrl);
+        }*/
+        LocalMedia media = new LocalMedia();
+        media.setPath(url);
+        selectList.add(media);
+        Log.i("","url："+ BFragment.myactivity);
+        //PictureSelector.create(BFragment.myactivity).externalPicturePreview(i, selectList);
     }
+
 }

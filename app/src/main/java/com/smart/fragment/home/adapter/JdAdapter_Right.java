@@ -13,17 +13,29 @@ import android.widget.TextView;
 import com.smart.fragment.R;
 import com.smart.fragment.bean.JD;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class JdAdapter extends RecyclerView.Adapter<JdAdapter.ViewHolder>{
+public class JdAdapter_Right extends RecyclerView.Adapter<JdAdapter_Right.ViewHolder>{
 
-    private List<JD> jdList;
+    private List<JD> jdList = new ArrayList<>();
     private Context context;
     Onclick aclick;
 
-    public JdAdapter(Context context, List<JD> jdList) {
+    // 空构造
+    public JdAdapter_Right() {
+    }
+
+    public JdAdapter_Right(Context context, List<JD> jdList) {
+        //jdList.clear();
         this.context = context;
         this.jdList = jdList;
+    }
+
+    public void setFirst(List<JD> l) {
+        this.jdList = l;
+        Log.i("","第一个  右边："+l);
+
     }
 
     public void setOnclick(Onclick aclick) {
@@ -32,7 +44,6 @@ public class JdAdapter extends RecyclerView.Adapter<JdAdapter.ViewHolder>{
     public interface Onclick{
          void click(int position);
     }
-
 
 
     //在内部类中完成对控件的绑定
@@ -56,7 +67,7 @@ public class JdAdapter extends RecyclerView.Adapter<JdAdapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycleview_jd,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycleview_jd_right,viewGroup,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder ;
     }

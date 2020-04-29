@@ -1,5 +1,6 @@
 package com.smart.fragment.community;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -56,6 +57,8 @@ public class BFragment extends BaseFragment implements View.OnClickListener {
 
     private List<NineGridTestModel> mList = new ArrayList<>();
 
+    public static Activity myactivity;
+
     /**
      * 创建一个Fragment实例
      *
@@ -71,12 +74,12 @@ public class BFragment extends BaseFragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_b, null);
 
+        myactivity = getActivity();
+        Log.i("BF1", String.valueOf(myactivity));
+
+
         initUi(view);
 
-        //  数据刷新  ？？ 问题待解决
-       /* if (mList.size() == 0 && infoList.size() == 0) {
-            getAllInfo();
-        }*/
         getAllInfo();
 
 
@@ -91,12 +94,18 @@ public class BFragment extends BaseFragment implements View.OnClickListener {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mRecycleAdapter = new NineGridTest2Adapter(context);
-        mRecycleAdapter.setList(infoList,mList);
+        mRecycleAdapter.setList(infoList, mList);
         mRecyclerView.setAdapter(mRecycleAdapter);
-
 
         return view;
     }
+
+
+   /* @Override
+    public void onResume() {
+        super.onResume();
+        getAllInfo();
+    }*/
 
     /*
      *  绑定控件  点击事件方监听
@@ -108,7 +117,7 @@ public class BFragment extends BaseFragment implements View.OnClickListener {
         // 后改
         mListView = view.findViewById(R.id.lv_bbs);
 
-        mRecyclerView =  view.findViewById(R.id.recyclerView);
+        mRecyclerView = view.findViewById(R.id.recyclerView);
 
 
     }
@@ -136,6 +145,8 @@ public class BFragment extends BaseFragment implements View.OnClickListener {
 
     // 数据格式转换   json
     public void dataChange(String data) {
+        infoList.clear();  // 再次请求  先清空之前的数据
+        mList.clear();//
 
         // fastjson  解析 json 数组
         try {

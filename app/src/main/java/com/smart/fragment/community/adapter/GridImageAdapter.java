@@ -126,7 +126,7 @@ public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.View
             viewHolder.mImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnAddPicClickListener.onAddPicClick();
+                    mOnAddPicClickListener.onAddPicClick();  // 添加图片
                 }
             });
             viewHolder.ll_del.setVisibility(View.INVISIBLE);
@@ -201,6 +201,7 @@ public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.View
                     public void onClick(View v) {
                         int adapterPosition = viewHolder.getAdapterPosition();
                         mItemClickListener.onItemClick(adapterPosition, v);
+                        Log.i("Grid:","位置："+adapterPosition);
                     }
                 });
             }

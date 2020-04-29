@@ -288,7 +288,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         if (resultCode == RESULT_OK) {
             //获取选中文件的定位符
             Uri uri = data.getData();
-            //Log.e("uri", uri.toString());
+//            Log.e("uri"," Intent data: "+ String.valueOf(data));
             //使用content的接口
             ContentResolver cr = this.getContentResolver();
             try {

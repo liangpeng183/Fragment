@@ -72,9 +72,6 @@ public class PublishActicity extends BaseActivity implements View.OnClickListene
     // 用于保存图片路径
     private List<String> list_path = new ArrayList<>();
 
-    private String imagePath;
-    private Bitmap bm;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +122,6 @@ public class PublishActicity extends BaseActivity implements View.OnClickListene
                     switch (mediaType) {
                         case 1:
                             // 预览图片 可自定长按保存路径
-                            //PictureSelector.create(MainActivity.this).externalPicturePreview(position, "/custom_file", selectList);
                             PictureSelector.create(PublishActicity.this).externalPicturePreview(position, selectList);
                             break;
                         case 2:
@@ -154,11 +150,8 @@ public class PublishActicity extends BaseActivity implements View.OnClickListene
                         @Override
                         public void accept(Permission permission) {
                             if (permission.granted) {// 用户已经同意该权限
-                                //第一种方式，弹出选择和拍照的dialog
+                                //  弹出选择和拍照的dialog
                                 showPop();
-
-                                //第二种方式，直接进入相册，但是 是有拍照得按钮的
-//                                showAlbum();
                             } else {
                                 Toast.makeText(PublishActicity.this, "拒绝", Toast.LENGTH_SHORT).show();
                             }
@@ -167,6 +160,7 @@ public class PublishActicity extends BaseActivity implements View.OnClickListene
         }
     };
 
+    // 直接进入相册
     private void showAlbum() {
         //参数很多，根据需要添加
         PictureSelector.create(PublishActicity.this)
@@ -196,6 +190,7 @@ public class PublishActicity extends BaseActivity implements View.OnClickListene
                 .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
     }
 
+    //  弹出选择相片方式
     private void showPop() {
         View bottomView = View.inflate(PublishActicity.this, R.layout.layout_bottom_dialog, null);
         TextView mAlbum = bottomView.findViewById(R.id.tv_album);
@@ -342,6 +337,7 @@ public class PublishActicity extends BaseActivity implements View.OnClickListene
         }).start();
 
     }
+
     //  上传  连接服务器
     private void upload(Map<Integer, String> map) {
         String content = publish_content.getText().toString().trim();
@@ -361,12 +357,13 @@ public class PublishActicity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                 list_path = null;
-                 String data = response.body().string();
+                list_path = null;
+                String data = response.body().string();
+
                 Message msg = Message.obtain();
                 msg.what = 1;
                 msg.obj = data;
-
+                handler.sendMessage(msg);
             }
         });
     }
@@ -378,61 +375,24 @@ public class PublishActicity extends BaseActivity implements View.OnClickListene
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
-                     if("ok".equals(msg.obj.toString())){  // 上传成功
-                         PublishActicity.this.finish();
-                     }
-                     else {
-                         Toast.makeText(context,"发布失败！",Toast.LENGTH_SHORT).show();
-                     }
+                    if ("ok".equals((String) msg.obj)) {  // 上传成功
+                        PublishActicity.this.finish();
+                    } else {
+                        Toast.makeText(context, "发布失败！", Toast.LENGTH_SHORT).show();
+                        publish_content.setText("");
+                        selectList.clear();
+                    }
                     break;
             }
 
         }
     };
 
-    /*
-     *  图片转换
-     * */
-    public String doChanged() {
-
-        String path;  // 路径url
-
-        if (selectList.size() != 0) {
-            for (int i = 0; i < selectList.size(); i++) {
-                list_path.add(selectList.get(i).getPath());
-                //Log.i("", "路径：" + selectList.get(i).getPath());
-            }
-        }
-        /*
-         *  list 集合 循环读取
-         * */
-        if (list_path.size() != 0) {
-            for (int i = 0; i < list_path.size(); i++) {
-                path = list_path.get(i);
-                final String finalPath = path;
-
-                final int finalI = i;
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String result;   // 转成base64 结果
-                        result = BitmapAndStringChange.imageToBase64(finalPath);
-                        Log.i("", "base64：：" + result);
-                        map.put(finalI, result);  // 添加到map 集合
-                    }
-                }).start();
-            }
-        }
-
-        return JSONObject.toJSONString(map);
-    }
-
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
-
 
 
 }

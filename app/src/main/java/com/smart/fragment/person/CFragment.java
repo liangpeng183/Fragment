@@ -16,11 +16,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smart.fragment.R;
 import com.smart.fragment.base.BaseFragment;
 import com.smart.fragment.bean.Users;
 import com.smart.fragment.person.activity.MyInfoActivity;
+import com.smart.fragment.ui.LoginActivity;
 import com.smart.fragment.utils.Const;
 import com.smart.fragment.utils.ExitApplication;
 import com.smart.fragment.utils.ImageLoader;
@@ -29,6 +31,7 @@ import com.smart.fragment.utils.OkHttpUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -152,7 +155,7 @@ public class CFragment extends BaseFragment implements View.OnClickListener {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
-                    Log.i("", "用户："+users.getHeadPic());
+                    Log.i("", "用户：" + users.getHeadPic());
                     tv_name.setText(users.getNickName());
                   /*  Glide.with(context)
                         .load(users.getHeadPic())
@@ -222,8 +225,10 @@ public class CFragment extends BaseFragment implements View.OnClickListener {
                     public void onClick(DialogInterface dialogInterface, int i) {
 //                        getActivity().finish();
 //                        System.exit(0);
+                        //cleatSp();
                         ExitApplication.getInstance().exit(context);
                     }
+
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
@@ -233,6 +238,27 @@ public class CFragment extends BaseFragment implements View.OnClickListener {
                 }).create();
         alertDialog.show();
     }
+
+    private void cleatSp() {
+        //删除文件
+
+        File file = new File("/data/data/" + context.getPackageName().toString() + "/shared_prefs", "user.xml");
+        if (file.exists()) {
+            file.delete();
+            Log.i("","已删除");
+            Toast.makeText(context, "删除成功", Toast.LENGTH_LONG).show();
+        }
+
+        //清空文件
+
+        if (LoginActivity.sp != null) {
+            LoginActivity.sp.edit().clear().commit();
+            Toast.makeText(context, "数据已清空", Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+
 
 
 }

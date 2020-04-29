@@ -1,6 +1,7 @@
 package com.smart.fragment.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,34 +38,40 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private EditText phone;
     private EditText password;
 
+    private CheckBox checkBox;
+
     private Button login;
     private TextView regist;
 
-    public String myPhone, myPhone1;
+    public String myPhone, myPhone1,psw;
     private LinearLayout rl_lv_item_bg;
+
+    public static SharedPreferences sp ;
 
     private String URL = Const.URL.URL_SUFFIX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+       sp = getSharedPreferences("user",0);
+        /* if(sp.getBoolean("IS_REM",false)){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }else {*/
+             setContentView(R.layout.activity_login);
 
-        ExitApplication.getInstance().addActivity(this);
+             ExitApplication.getInstance().addActivity(this);
 
-        /*
-         *  透明状态栏 沉浸式
-         * */
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+             /*
+              *  透明状态栏 沉浸式
+              * */
+             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
-        init();
+             init();
 
-        rl_lv_item_bg = findViewById(R.id.rl_lv_item_bg);
-        rl_lv_item_bg.getBackground().setAlpha(100);
+             onDestroy();
 
-
-        onDestroy();
 
     }
 
@@ -78,6 +86,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         login = findViewById(R.id.login);
         regist = findViewById(R.id.regist);
 
+        checkBox = findViewById(R.id.rem_check);
+
+        // 设置背景透明度
+        rl_lv_item_bg = findViewById(R.id.rl_lv_item_bg);
+        rl_lv_item_bg.getBackground().setAlpha(100);
+
+
         login.setOnClickListener(this);
         regist.setOnClickListener(this);
 
@@ -90,7 +105,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.login:
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
-                //loginCheck();
+//                loginCheck();
 
                 break;
             case R.id.regist:
@@ -110,13 +125,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
      * */
     private void loginCheck() {
         myPhone = phone.getText().toString().trim();
-        String myPassword = password.getText().toString().trim();
+        psw = password.getText().toString().trim();
 
-        String url =  URL +"user/login/" + myPhone + "/" + myPassword;
+        String url =  URL +"user/login/" + myPhone + "/" + psw;
 
         if (myPhone.isEmpty() || myPhone.equals("")) {
             Toast.makeText(context, "请输入手机号", Toast.LENGTH_SHORT).show();
-        } else if (myPassword.isEmpty() || myPassword.equals("")) {
+        } else if (psw.isEmpty() || psw.equals("")) {
             Toast.makeText(context, "请输入密码！", Toast.LENGTH_SHORT).show();
         } else {
             // get 请求
@@ -156,9 +171,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 case 1:
                     if (msg.obj.equals("ok")) {
                         Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
+                        if (checkBox.isChecked()) {  // 选择记住密码框
+                            saveInLocate(myPhone, psw);  // 保存登录的用户信息
+                        }
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("name", myPhone);
                         startActivity(intent);
+
 
                     } else {
                         Toast.makeText(LoginActivity.this, "手机号或密码错误！", Toast.LENGTH_SHORT).show();
@@ -176,6 +195,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             }
         }
     };
+
+    // 保存用户登录信息
+    private void saveInLocate(String myPhone, String psw) {
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("phone",myPhone);
+        editor.putString("password",psw);
+        editor.putBoolean("IS_REM",true).commit();
+        editor.commit();
+    }
 
     // 验证该手机号是否已经被注册
     public  void checkPhoneIsExsit(final String phone_num) {

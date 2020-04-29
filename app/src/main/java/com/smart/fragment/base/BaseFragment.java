@@ -11,11 +11,11 @@ import android.widget.Toast;
 public class BaseFragment extends Fragment
 {
 
-    public Context context;
+    public  Context context;   // 上下文
     protected View view = null;
 
     private static final String TAG = "BaseFragment------>>>>";
-    private BaseActivity activity;
+    public BaseActivity activity;
 
 
 

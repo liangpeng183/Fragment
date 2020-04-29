@@ -19,8 +19,7 @@ public class ExitApplication extends Application {
     public ExitApplication() {
 
     }
-
-
+    //单例模式获取唯一的 ExitApplication
     public static ExitApplication getInstance() {
         if (null == ea) {
             ea = new ExitApplication();
@@ -28,16 +27,20 @@ public class ExitApplication extends Application {
         return ea;
     }
 
+    //添加activity到容器中
     public void addActivity(Activity activity) {
         list.add(activity);
     }
 
+    //遍历所有的Activiy并finish
     public void exit(Context context) {
         for (Activity activity : list) {
             activity.finish();
         }
         System.exit(0);
     }
+
+
 
 
 }
